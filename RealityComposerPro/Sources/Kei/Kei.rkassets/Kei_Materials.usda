@@ -1,0 +1,3913 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Mesh"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def "Mesh" (
+    active = true
+    customData = {
+        float3 rotationEulerHint = (-1.5707964, 0, 0)
+    }
+    references = @Reaction.usdc@
+)
+{
+    quatf xformOp:orient = (0.70710677, -0.70710677, 0, 0)
+    float3 xformOp:scale = (1, 1, 1)
+    uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+    over "CH0335"
+    {
+        over "CH0335_Prop_Outlline" (
+            active = false
+        )
+        {
+        }
+
+        over "brush_01" (
+            active = false
+        )
+        {
+        }
+    }
+
+    over "_materials"
+    {
+        over "Mouth"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = None
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                int ui:nodegraph:node:stackingOrder = 19654
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-502.3717, 66.39237)
+                int ui:nodegraph:node:stackingOrder = 19654
+            }
+
+            def Shader "Separate4" (
+                references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Separate4>
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-740.7859, 84.77255)
+                int ui:nodegraph:node:stackingOrder = 19654
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-977.2709, 47.823105)
+                int ui:nodegraph:node:stackingOrder = 19654
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+        }
+
+        over "Mouth8"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth8/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth8/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth8/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth8/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth8/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-650.5052, -55.02732)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth8/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-403.13354, -16.419693)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1125.4043, -73.59659)
+                int ui:nodegraph:node:stackingOrder = 19655
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth8/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-888.9195, -36.64714)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+        }
+
+        over "Mouth7"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth7/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth7/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = None
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-271.37726, 125.40924)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-993.6482, 68.232346)
+                int ui:nodegraph:node:stackingOrder = 19657
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth7/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-757.1631, 105.18179)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth7/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth7/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth7/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-518.749, 86.801605)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+        }
+
+        over "Mouth6"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth6/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth6/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth6/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth6/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth6/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-504.27032, 96.30376)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-979.1695, 77.7345)
+                int ui:nodegraph:node:stackingOrder = 19655
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth6/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-256.89862, 134.91138)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth6/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-742.6845, 114.68393)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+        }
+
+        over "Mouth5"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth5/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth5/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-926.1496, 102.89691)
+                int ui:nodegraph:node:stackingOrder = 19655
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth5/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-203.87872, 160.0738)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth5/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-689.6646, 139.84636)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth5/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth5/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth5/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-451.25043, 121.46619)
+                int ui:nodegraph:node:stackingOrder = 19655
+            }
+        }
+
+        over "Mouth4"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth4/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth4/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-985.6007, 36.528713)
+                int ui:nodegraph:node:stackingOrder = 19659
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth4/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-749.1156, 73.47816)
+                int ui:nodegraph:node:stackingOrder = 19659
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth4/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-263.32977, 93.705605)
+                int ui:nodegraph:node:stackingOrder = 19659
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth4/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth4/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth4/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-510.70154, 55.097973)
+                int ui:nodegraph:node:stackingOrder = 19659
+            }
+        }
+
+        over "Mouth3"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth3/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth3/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth3/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth3/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth3/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-555.7524, 39.86953)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-794.1665, 58.249702)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 3 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1030.6516, 21.300268)
+                int ui:nodegraph:node:stackingOrder = 19657
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth3/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth3/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-308.38065, 78.47715)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+        }
+
+        over "Mouth2"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/Mouth2/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/Mouth2/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (7.1323514, 150.23582)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19659
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = None
+                float inputs:metallic
+                float3 inputs:normal
+                float inputs:opacity.connect = </Mesh/_materials/Mouth2/Separate4.outputs:outa>
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-233.67827, 124.27948)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18404
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18402
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 1 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18403
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-955.94916, 67.10257)
+                int ui:nodegraph:node:stackingOrder = 19657
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18405
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18404
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/Mouth2/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/Mouth2/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/Mouth2/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-481.05, 85.671844)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/Mouth2/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-719.4642, 104.052)
+                int ui:nodegraph:node:stackingOrder = 19657
+            }
+        }
+
+        over "CH0335_Body"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF"
+            {
+                color3f inputs:emissiveColor.connect = None
+                float inputs:metallic = 0
+                delete float inputs:opacity.connect = </Mesh/_materials/CH0335_Body/Image_Texture.outputs:a>
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 0.75
+            }
+
+            def Shader "emissiveColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Body.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Body/emissiveColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Body.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Mouth2"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth2/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth2/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 1 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1125.9602, 149.42119)
+                int ui:nodegraph:node:stackingOrder = 19956
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth2/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-828.5769, 112.632355)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth2/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth2/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth2/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-611.43604, 82.060776)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth2/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth2/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-306.98065, 175.04852)
+                int ui:nodegraph:node:stackingOrder = 19969
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+        }
+
+        over "CH0335_Mouth"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-255, 105)
+                int ui:nodegraph:node:stackingOrder = 19884
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-559.45544, 12.012249)
+                int ui:nodegraph:node:stackingOrder = 19875
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1073.9796, 79.372665)
+                int ui:nodegraph:node:stackingOrder = 19875
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Separate4>
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-776.5962, 42.583836)
+                int ui:nodegraph:node:stackingOrder = 19875
+            }
+        }
+
+        over "CH0335_Mouth7"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth7/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth7/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-85.86279, 279.697)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19960
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 4 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1166.5902, 105.28827)
+                int ui:nodegraph:node:stackingOrder = 19958
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth7/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-869.20685, 68.499435)
+                int ui:nodegraph:node:stackingOrder = 19958
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth7/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth7/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-347.61063, 130.91562)
+                int ui:nodegraph:node:stackingOrder = 19964
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth7/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth7/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth7/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-652.0661, 37.92786)
+                int ui:nodegraph:node:stackingOrder = 19958
+            }
+        }
+
+        over "CH0335_Mouth8"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth8/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth8/Principled_BSDF_001.outputs:surface>
+            string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:mtlx:surface"]
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (133.82422, 98.98047)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19878
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth8/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth8/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-121.66406, 56.67578)
+                int ui:nodegraph:node:stackingOrder = 19964
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth8/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth8/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-426.1195, -36.31197)
+                int ui:nodegraph:node:stackingOrder = 19955
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 0 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-940.6437, 31.048447)
+                int ui:nodegraph:node:stackingOrder = 19955
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth8/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-643.26025, -5.740383)
+                int ui:nodegraph:node:stackingOrder = 19955
+            }
+        }
+
+        over "CH0335_Mouth6"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth6/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth6/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-767.6394, 120.84477)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth6/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth6/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-246.04321, 183.26094)
+                int ui:nodegraph:node:stackingOrder = 19963
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth6/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth6/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-550.49866, 90.27319)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1065.0228, 157.6336)
+                int ui:nodegraph:node:stackingOrder = 19956
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth6/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+        }
+
+        over "CH0335_Mouth5"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth5/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth5/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 7 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 1 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1252.6344, 141.06229)
+                int ui:nodegraph:node:stackingOrder = 19956
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth5/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-955.251, 104.27345)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth5/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth5/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth5/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-738.1102, 73.70187)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth5/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth5/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-433.6548, 166.68962)
+                int ui:nodegraph:node:stackingOrder = 19965
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+        }
+
+        over "CH0335_Mouth4"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth4/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth4/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 5 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1096.5394, 52.348106)
+                int ui:nodegraph:node:stackingOrder = 19958
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth4/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-799.156, 15.559272)
+                int ui:nodegraph:node:stackingOrder = 19958
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth4/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth4/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth4/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-582.01526, -15.012307)
+                int ui:nodegraph:node:stackingOrder = 19958
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth4/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth4/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-277.55984, 77.97544)
+                int ui:nodegraph:node:stackingOrder = 19966
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+        }
+
+        over "CH0335_Mouth3"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Mouth3/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Mouth3/Principled_BSDF_001.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (-204.31892, 166.42343)
+            int ui:nodegraph:realitykit:subgraphOutputs:stackingOrder = 19959
+
+            over "Principled_BSDF_001" (
+                active = false
+            )
+            {
+            }
+
+            def NodeGraph "BlueArchiveMouth"
+            {
+                int inputs:characterMouthImageIndex (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (977.75, 1064.5)
+                            int stackingOrderInSubgraph = 18417
+                        }
+                    }
+                )
+                int inputs:characterMouthImageIndex.connect = None
+                int inputs:characterMouthX = 2 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 174.75)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthX.connect = None
+                int inputs:characterMouthY = 3 (
+                    customData = {
+                        dictionary realitykit = {
+                            float2 positionInSubgraph = (74.25, 488.5)
+                            int stackingOrderInSubgraph = 18416
+                        }
+                    }
+                )
+                int inputs:characterMouthY.connect = None
+                color4f outputs:IfEqual_out.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/IfEqual.outputs:out>
+                float2 ui:nodegraph:node:pos = (-1291.5671, 92.932594)
+                int ui:nodegraph:node:stackingOrder = 19956
+                float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (1427, 747.75)
+
+                def Shader "Combine2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Combine2>
+                )
+                {
+                    uniform token info:id = "ND_combine2_vector2"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Oneminus.outputs:out>
+                    float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Multiply_1.outputs:out>
+                    float2 outputs:out
+                    float2 ui:nodegraph:node:pos = (734.75, 331.625)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "IfEqual" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/IfEqual>
+                )
+                {
+                    uniform token info:id = "ND_ifequal_color4I"
+                    color4f inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/TiledImage_1.outputs:out>
+                    color4f inputs:in2.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/TiledImage.outputs:out>
+                    int inputs:value1 = 1
+                    int inputs:value2.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth.inputs:characterMouthImageIndex>
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (1212.5, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18386
+                }
+
+                def Shader "TiledImage_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage_1>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 747.75)
+                    int ui:nodegraph:node:stackingOrder = 18407
+                }
+
+                def Shader "Oneminus" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Oneminus>
+                )
+                {
+                    uniform token info:id = "ND_realitykit_oneminus_float"
+                    float inputs:in.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Multiply_2.outputs:out>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18374
+                }
+
+                def Shader "TiledImage" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/TiledImage>
+                )
+                {
+                    uniform token info:id = "ND_tiledimage_color4"
+                    asset inputs:file = @textures/Character_Mouth.png@
+                    float2 inputs:realworldimagesize = (1, 1)
+                    float2 inputs:uvoffset.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Combine2.outputs:out>
+                    float2 inputs:uvtiling = (0.5, 0.5)
+                    color4f outputs:out
+                    float2 ui:nodegraph:node:pos = (977.75, 229.25)
+                    int ui:nodegraph:node:stackingOrder = 18406
+                }
+
+                def Shader "Convert_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert_1>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth.inputs:characterMouthY>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Add" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Add>
+                )
+                {
+                    uniform token info:id = "ND_add_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Convert_1.outputs:out>
+                    float inputs:in2 = 1
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18379
+                }
+
+                def Shader "Multiply_2" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_2>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Convert.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (446.25, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18376
+                }
+
+                def Shader "Convert" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Convert>
+                )
+                {
+                    uniform token info:id = "ND_convert_integer_float"
+                    int inputs:in.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth.inputs:characterMouthX>
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (283, 174.75)
+                    int ui:nodegraph:node:stackingOrder = 18369
+                }
+
+                def Shader "Multiply_1" (
+                    references = @TendouArisSD_references/M_TendouArisSD_Cel.usda@</Root/Mouth/Multiply_1>
+                )
+                {
+                    uniform token info:id = "ND_multiply_float"
+                    float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth/Add.outputs:out>
+                    float inputs:in2 = 0.125
+                    float outputs:out
+                    float2 ui:nodegraph:node:pos = (568.75, 488.5)
+                    int ui:nodegraph:node:stackingOrder = 18382
+                }
+            }
+
+            def Shader "Separate4" (
+                references = None
+            )
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Mouth3/BlueArchiveMouth.outputs:IfEqual_out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-994.1837, 56.14377)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Mouth3/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Mouth3/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Mouth3/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-777.04297, 25.572178)
+                int ui:nodegraph:node:stackingOrder = 19956
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Mouth3/Combine3.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 0)
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Mouth3/Separate4.outputs:outa>
+                float inputs:opacityThreshold = 0.5
+                float inputs:roughness = 1
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-472.58752, 118.55994)
+                int ui:nodegraph:node:stackingOrder = 19964
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced"]
+            }
+        }
+
+        over "CH0335_Halo"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF"
+            {
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:emissiveColor.connect = </Mesh/_materials/CH0335_Halo/emissiveColor.outputs:rgb>
+                float inputs:ior = 0
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 1
+            }
+
+            def Shader "opacity"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Halo.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Halo/opacity/TexCoordReader.outputs:result>
+                float outputs:r
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Halo.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+
+            def Shader "emissiveColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Halo.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Halo/emissiveColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Halo.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Prop"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF"
+            {
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold = 0
+            }
+
+            def Shader "opacity"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Prop.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Prop/opacity/TexCoordReader.outputs:result>
+                float outputs:r
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Prop.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Hair"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Hair/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = true
+            )
+            {
+                color3f inputs:emissiveColor.connect = None
+                float inputs:metallic = 0
+                delete float inputs:opacity.connect = </Mesh/_materials/CH0335_Hair/Image_Texture.outputs:a>
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 0.4
+            }
+
+            def Shader "emissiveColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Hair.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Hair/emissiveColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Hair.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Face"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Face/PreviewSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Face/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = false
+            )
+            {
+                color3f inputs:emissiveColor.connect = None
+                delete float inputs:opacity.connect = </Mesh/_materials/CH0335_Face/Image_Texture.outputs:a>
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 1
+            }
+
+            def Shader "emissiveColor"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Face.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Face/emissiveColor/TexCoordReader.outputs:result>
+                color3f outputs:rgb
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Face.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+
+            def Shader "PreviewSurface"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoat
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor = (1, 1, 1) (
+                    colorSpace = "lin_srgb"
+                )
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Face/Image.outputs:out>
+                color3f inputs:emissiveColor.connect = </Mesh/_materials/CH0335_Face/Multiply.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic
+                float3 inputs:normal = (0, 0, 1)
+                float inputs:occlusion = 1
+                float inputs:opacity
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 1
+                float inputs:roughness.connect = None
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-237.23047, 66.27344)
+                int ui:nodegraph:node:stackingOrder = 19293
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced", "inputs:opacityThreshold"]
+            }
+
+            def Shader "Image"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @textures/CH0335_Face.png@
+                string inputs:filtertype
+                string inputs:vaddressmode
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-743.0703, -197.23438)
+                int ui:nodegraph:node:stackingOrder = 19222
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3FA"
+                color3f inputs:in1.connect = </Mesh/_materials/CH0335_Face/Image.outputs:out>
+                float inputs:in2 = 0.5
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-468.94766, 76.30906)
+                int ui:nodegraph:node:stackingOrder = 19291
+            }
+        }
+
+        over "CH0335_Eyebrow"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+
+            over "Principled_BSDF"
+            {
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 1
+            }
+
+            def Shader "opacity"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_EyeMouth.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Eyebrow/opacity/TexCoordReader.outputs:result>
+                float outputs:r
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Eyebrow.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Eyebrow2"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+
+            over "Principled_BSDF"
+            {
+                delete float inputs:opacity.connect = </Mesh/_materials/CH0335_Eyebrow2/Image_Texture.outputs:a>
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 1
+            }
+        }
+
+        over "CH0335_EyeMouth"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+
+            over "Principled_BSDF"
+            {
+                float inputs:metallic = 0
+                float inputs:roughness = 0.5
+            }
+        }
+
+        over "CH0335_Brush_01"
+        {
+            token inputs:frame:stPrimvarName = "st" (
+                customData = {
+                    dictionary realitykit = {
+                        bool hide = 1
+                    }
+                }
+            )
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+
+            over "Principled_BSDF"
+            {
+                float inputs:opacity.connect = None
+                float inputs:opacityThreshold = 0
+            }
+
+            def Shader "opacity"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/CH0335_Prop.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Brush_01/opacity/TexCoordReader.outputs:result>
+                float outputs:r
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Brush_01.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+        }
+
+        over "CH0335_Weapon"
+        {
+            token outputs:mtlx:surface
+            token outputs:realitykit:vertex
+
+            over "Principled_BSDF"
+            {
+                delete float inputs:opacity.connect = </Mesh/_materials/CH0335_Weapon/Image_Texture.outputs:a>
+                float inputs:opacityThreshold = 0
+                float inputs:roughness = 0.5
+            }
+        }
+
+        over "CH0335_Blush"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Blush/UnlitSurface.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Blush/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = false
+            )
+            {
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Blush/opacity.outputs:r>
+            }
+
+            def Shader "opacity"
+            {
+                uniform token info:id = "UsdUVTexture"
+                asset inputs:file = @textures/Blush.png@
+                float2 inputs:st.connect = </Mesh/_materials/CH0335_Blush/opacity/TexCoordReader.outputs:result>
+                float outputs:r
+
+                def Shader "TexCoordReader"
+                {
+                    uniform token info:id = "UsdPrimvarReader_float2"
+                    token inputs:varname.connect = </Mesh/_materials/CH0335_Blush.inputs:frame:stPrimvarName>
+                    float2 outputs:result
+                }
+            }
+
+            def Shader "UnlitSurface" (
+                active = true
+            )
+            {
+                uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                bool inputs:applyPostProcessToneMap
+                color3f inputs:color.connect = </Mesh/_materials/CH0335_Blush/Combine3.outputs:out>
+                bool inputs:hasPremultipliedAlpha
+                float inputs:opacity.connect = </Mesh/_materials/CH0335_Blush/Separate4.outputs:outa>
+                float inputs:opacityThreshold
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-245.05078, 77.19922)
+                int ui:nodegraph:node:stackingOrder = 5
+            }
+
+            def Shader "Image"
+            {
+                uniform token info:id = "ND_image_color4"
+                asset inputs:file = @textures/Blush.png@
+                string inputs:filtertype
+                color4f outputs:out
+                float2 ui:nodegraph:node:pos = (-869.3633, -139.42578)
+                int ui:nodegraph:node:stackingOrder = 33
+            }
+
+            def Shader "Separate4"
+            {
+                uniform token info:id = "ND_separate4_color4"
+                color4f inputs:in.connect = </Mesh/_materials/CH0335_Blush/Image.outputs:out>
+                float outputs:outa
+                float outputs:outb
+                float outputs:outg
+                float outputs:outr
+                float2 ui:nodegraph:node:pos = (-652.9297, 23.953125)
+                int ui:nodegraph:node:stackingOrder = 31
+            }
+
+            def Shader "Combine3"
+            {
+                uniform token info:id = "ND_combine3_color3"
+                float inputs:in1.connect = </Mesh/_materials/CH0335_Blush/Separate4.outputs:outr>
+                float inputs:in2.connect = </Mesh/_materials/CH0335_Blush/Separate4.outputs:outg>
+                float inputs:in3.connect = </Mesh/_materials/CH0335_Blush/Separate4.outputs:outb>
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-481.95703, -7.0273438)
+                int ui:nodegraph:node:stackingOrder = 29
+            }
+        }
+
+        over "CH0335_Body2"
+        {
+            token outputs:mtlx:surface.connect = </Mesh/_materials/CH0335_Body2/PreviewSurface_1.outputs:out>
+            token outputs:realitykit:vertex
+            token outputs:surface.connect = </Mesh/_materials/CH0335_Body2/Principled_BSDF.outputs:surface>
+            float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+            over "Principled_BSDF" (
+                active = false
+            )
+            {
+            }
+
+            def Shader "Image"
+            {
+                uniform token info:id = "ND_image_color3"
+                asset inputs:file = @textures/CH0335_Body.png@
+                string inputs:filtertype
+                string inputs:vaddressmode
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-704.40234, -189.85127)
+                int ui:nodegraph:node:stackingOrder = 19284
+            }
+
+            def Shader "PreviewSurface_1"
+            {
+                uniform token info:id = "ND_UsdPreviewSurface_surfaceshader"
+                float inputs:clearcoat
+                float inputs:clearcoatRoughness = 0
+                color3f inputs:diffuseColor.connect = </Mesh/_materials/CH0335_Body2/Image.outputs:out>
+                color3f inputs:emissiveColor.connect = </Mesh/_materials/CH0335_Body2/Multiply.outputs:out>
+                float inputs:ior = 0
+                float inputs:metallic = 0
+                float3 inputs:normal = (0, 0, 1)
+                float inputs:occlusion = 1
+                float inputs:opacity
+                float inputs:opacityThreshold
+                float inputs:roughness = 1
+                float inputs:roughness.connect = None
+                token outputs:out
+                float2 ui:nodegraph:node:pos = (-273.37762, 43.126305)
+                int ui:nodegraph:node:stackingOrder = 19281
+                string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["Advanced", "inputs:opacityThreshold"]
+            }
+
+            def Shader "Multiply"
+            {
+                uniform token info:id = "ND_multiply_color3FA"
+                prepend color3f inputs:in1.connect = </Mesh/_materials/CH0335_Body2/Image.outputs:out>
+                float inputs:in2 = 0.5
+                color3f outputs:out
+                float2 ui:nodegraph:node:pos = (-464.31113, 77.146385)
+                int ui:nodegraph:node:stackingOrder = 19288
+            }
+        }
+    }
+}
+

@@ -1,0 +1,793 @@
+#usda 1.0
+(
+    customLayerData = {
+        string creator = "Reality Composer Pro Version 2.0 (494.60.2)"
+    }
+    defaultPrim = "Root"
+    metersPerUnit = 1
+    upAxis = "Y"
+)
+
+def Xform "Root"
+{
+    reorder nameChildren = ["Mesh", "Sticker", "RCP_BehaviorsContainer", "OnAddedToScene", "Timeline", "AnimationLibrary", "Timeline2"]
+    def RealityKitComponent "RCP_BehaviorsContainer"
+    {
+        rel behaviors = </Root/OnAddedToScene>
+        uniform token info:id = "RCP.BehaviorsContainer"
+    }
+
+    def Preliminary_Behavior "OnAddedToScene"
+    {
+        rel actions = </Root/OnAddedToScene/Action>
+        uniform bool exclusive
+        rel triggers = </Root/OnAddedToScene/Trigger>
+
+        def Preliminary_Trigger "Trigger"
+        {
+            rel affectedObjects = </Root>
+            token info:id = "SceneTransition"
+        }
+
+        def Preliminary_Action "Action"
+        {
+            rel affectedObjects = </Root>
+            rel animationLibraryKey = </Root/Timeline2>
+            rel animationLibraryKeyOverrideKey = </Root/OnAddedToScene/Trigger>
+            token info:id = "PlayTimeline"
+            int loops = 0
+            int performCount = 1
+            token type = "serial"
+        }
+    }
+
+    def RealityKitTimeline "Timeline"
+    {
+        reorder nameChildren = ["Track", "Track2", "Track3", "Track4", "Track5"]
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Animation"
+            {
+                string actionKind = "animation"
+                string animation = "default subtree animation"
+                int blendLayer = 500
+                double duration = 15.700000319629908
+                uniform token info:id = "1D3618C9-B320-4642-90C3-8635B1137204"
+                double loopCount = 1
+                bool separateAnimatedValue = 1
+                double startTime = 0
+                rel target = </Root/Mesh>
+
+                def RealityKitStruct "handoffType"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track2"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "450B3B45-93D7-48B6-AA7B-37C9BF825F14"
+                double startTime = -0.01
+                rel target = </Root/Sticker/Sticker2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "AA57D9D4-4300-4632-A3B9-9A1C22609192"
+                double startTime = 3.1166731884021033
+                rel target = </Root/Sticker/Sticker2>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide2"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "450B3B45-93D7-48B6-AA7B-37C9BF825F14"
+                double startTime = 3.7022836198678704
+                rel target = </Root/Sticker/Sticker2>
+                float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track3"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "9AA2F664-FC9C-4965-AE32-0DA0D3D558BC"
+                double startTime = -0.01
+                rel target = </Root/Sticker/Sticker1>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "AA57D9D4-4300-4632-A3B9-9A1C22609192"
+                double startTime = 4.435214237458674
+                rel target = </Root/Sticker/Sticker1>
+                float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide2"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "450B3B45-93D7-48B6-AA7B-37C9BF825F14"
+                double startTime = 6.180014236864293
+                rel target = </Root/Sticker/Sticker1>
+                float2 ui:nodegraph:node:pos = (-458.7871, -41.552734)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track4"
+        {
+            reorder nameChildren = ["Hide", "Show", "Hide2"]
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "9AA2F664-FC9C-4965-AE32-0DA0D3D558BC"
+                double startTime = -0.01
+                rel target = </Root/Sticker/Sticker3>
+                float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Hide2"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "450B3B45-93D7-48B6-AA7B-37C9BF825F14"
+                double startTime = 9.719351200063564
+                rel target = </Root/Sticker/Sticker3>
+                float2 ui:nodegraph:node:pos = (-458.7871, -41.552734)
+                int ui:nodegraph:node:stackingOrder = 2
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "AA57D9D4-4300-4632-A3B9-9A1C22609192"
+                double startTime = 8.609058257922769
+                rel target = </Root/Sticker/Sticker3>
+                float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+                int ui:nodegraph:node:stackingOrder = 1
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+
+        def RealityKitTrack "Track5"
+        {
+            def RealityKitAction "Hide"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0
+                uniform token info:id = "BFBED69F-D801-486E-9B17-BADF3BD3F71D"
+                double startTime = 0
+                rel target = </Root/Mesh/Blush>
+
+                def RealityKitStruct "timingFunction"
+                {
+                    token type = "linear"
+                }
+            }
+
+            def RealityKitAction "Show"
+            {
+                string actionKind = "show"
+                int blendLayer = 300
+                double duration = 0.6444195117359496
+                uniform token info:id = "F932D383-7E81-4359-AE97-910B66433265"
+                double startTime = 3.371333061094081
+                rel target = </Root/Mesh/Blush>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+
+            def RealityKitAction "Hide2"
+            {
+                string actionKind = "hide"
+                int blendLayer = 300
+                double duration = 0.9909572636496852
+                uniform token info:id = "018595CB-745B-4C1F-BBD2-23DC0CE80D40"
+                double startTime = 7.936594391424988
+                rel target = </Root/Mesh/Blush>
+
+                def RealityKitStruct "timingFunction"
+                {
+                }
+            }
+        }
+    }
+
+    def RealityKitComponent "AnimationLibrary"
+    {
+        token info:id = "RealityKit.AnimationLibrary"
+
+        def RealityKitAnimationFile "_Root_Timeline"
+        {
+            uniform bool looping = 1
+            uniform string name = "/Root/Timeline"
+        }
+    }
+
+    def "Mesh" (
+        active = true
+        references = @Kei_Materials.usda@
+    )
+    {
+        float3 xformOp:scale = (1, 1, 1)
+
+        def RealityKitComponent "AnimationLibrary"
+        {
+            token info:id = "RealityKit.AnimationLibrary"
+
+            def RealityKitAnimationFile "default_subtree_animation"
+            {
+                uniform bool looping = 1
+                uniform string name = "default subtree animation"
+            }
+        }
+
+        over "CH0335"
+        {
+            over "CH0335_Prop_Outlline"
+            {
+                def RealityKitComponent "HierarchicalFade"
+                {
+                    uniform token info:id = "RealityKit.HierarchicalFade"
+                }
+
+                def RealityKitComponent "Billboard"
+                {
+                    float blendFactor = 0.5
+                    uniform token info:id = "RealityKit.Billboard"
+                }
+            }
+
+            over "Blush"
+            {
+                over "Plane"
+                {
+                    def RealityKitComponent "HierarchicalFade"
+                    {
+                        uniform token info:id = "RealityKit.HierarchicalFade"
+                        float opacity = 1
+                    }
+                }
+            }
+        }
+
+        over "Blush"
+        {
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+                float opacity = 1
+            }
+        }
+
+        over "_materials"
+        {
+            over "CH0335_Face"
+            {
+                over "SphereNormal"
+                {
+                    int ui:nodegraph:node:stackingOrder = 19187
+                }
+            }
+        }
+    }
+
+    def Xform "Sticker" (
+        active = true
+    )
+    {
+        reorder nameChildren = ["Sticker1", "Billboard", "Sticker2", "Sticker3"]
+        float3 xformOp:translate = (0, 0.7010457, 0)
+        uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+        def RealityKitComponent "Billboard"
+        {
+            float blendFactor = 0.5
+            uniform token info:id = "RealityKit.Billboard"
+        }
+
+        def Xform "Sticker1" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0, -0.7010457, 0)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "Sticker1_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+            )
+            {
+                rel material:binding = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial>
+                double size = 1.5
+                quatf xformOp:orient = (1, 0, 0, 0)
+                float3 xformOp:scale = (0.1, 0.1, 0.001)
+                float3 xformOp:translate = (0.12422605, 0.64965034, 0.28835538)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/UnlitSurface.outputs:out>
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/DefaultSurfaceShader.outputs:surface>
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader" (
+                        active = false
+                    )
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+
+                    def Shader "UnlitSurface"
+                    {
+                        uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                        bool inputs:applyPostProcessToneMap
+                        color3f inputs:color.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Combine3.outputs:out>
+                        bool inputs:hasPremultipliedAlpha
+                        float inputs:opacity.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Separate4.outputs:outa>
+                        float inputs:opacityThreshold = 0.5
+                        token outputs:out
+                        float2 ui:nodegraph:node:pos = (-249.6211, 130.28906)
+                        int ui:nodegraph:node:stackingOrder = 27
+                    }
+
+                    def Shader "Image"
+                    {
+                        uniform token info:id = "ND_image_color4"
+                        asset inputs:file = @textures/FX_TEX_Eye_Motion_28.png@
+                        string inputs:filtertype
+                        string inputs:vaddressmode
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-949.0742, -147.64453)
+                        int ui:nodegraph:node:stackingOrder = 40
+                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+                    }
+
+                    def Shader "Separate4"
+                    {
+                        uniform token info:id = "ND_separate4_color4"
+                        color4f inputs:in.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Add.outputs:out>
+                        float outputs:outa
+                        float outputs:outb
+                        float outputs:outg
+                        float outputs:outr
+                        float2 ui:nodegraph:node:pos = (-648.59375, 113.80469)
+                        int ui:nodegraph:node:stackingOrder = 24
+                    }
+
+                    def Shader "Combine3"
+                    {
+                        uniform token info:id = "ND_combine3_color3"
+                        float inputs:in1.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Separate4.outputs:outr>
+                        float inputs:in2.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Separate4.outputs:outg>
+                        float inputs:in3.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Separate4.outputs:outb>
+                        color3f outputs:out
+                        float2 ui:nodegraph:node:pos = (-464.76953, 64.21094)
+                        int ui:nodegraph:node:stackingOrder = 26
+                    }
+
+                    def Shader "Add"
+                    {
+                        uniform token info:id = "ND_add_color4"
+                        color4f inputs:in1.connect = </Root/Sticker/Sticker1/Sticker1_1/DefaultMaterial/Image.outputs:out>
+                        color4f inputs:in2 = (1, 0, 0, 0) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-827.6992, 113.80078)
+                        int ui:nodegraph:node:stackingOrder = 42
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+
+            def Cube "Sticker1_2" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (1.1798015e-9, -1.2042226e-10, -3.1415927)
+                }
+            )
+            {
+                rel material:binding = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial>
+                double size = 1.5
+                float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (4.371139e-8, 6.0211156e-11, 5.8990074e-10, 1)
+                float3 xformOp:scale = (0.1, 0.1, 0.001)
+                float3 xformOp:translate = (-0.14450248, 0.6496533, 0.2883554)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/UnlitSurface.outputs:out>
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = None
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader" (
+                        active = false
+                    )
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+
+                    def Shader "UnlitSurface"
+                    {
+                        uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                        bool inputs:applyPostProcessToneMap
+                        color3f inputs:color.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Combine3.outputs:out>
+                        bool inputs:hasPremultipliedAlpha
+                        float inputs:opacity.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Separate4.outputs:outa>
+                        float inputs:opacityThreshold = 0.5
+                        token outputs:out
+                        float2 ui:nodegraph:node:pos = (-249.6211, 130.28906)
+                        int ui:nodegraph:node:stackingOrder = 27
+                    }
+
+                    def Shader "Image"
+                    {
+                        uniform token info:id = "ND_image_color4"
+                        asset inputs:file = @textures/FX_TEX_Eye_Motion_28.png@
+                        string inputs:filtertype
+                        string inputs:vaddressmode
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-949.0742, -147.64453)
+                        int ui:nodegraph:node:stackingOrder = 40
+                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+                    }
+
+                    def Shader "Separate4"
+                    {
+                        uniform token info:id = "ND_separate4_color4"
+                        color4f inputs:in.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Add.outputs:out>
+                        float outputs:outa
+                        float outputs:outb
+                        float outputs:outg
+                        float outputs:outr
+                        float2 ui:nodegraph:node:pos = (-648.59375, 113.80469)
+                        int ui:nodegraph:node:stackingOrder = 24
+                    }
+
+                    def Shader "Combine3"
+                    {
+                        uniform token info:id = "ND_combine3_color3"
+                        float inputs:in1.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Separate4.outputs:outr>
+                        float inputs:in2.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Separate4.outputs:outg>
+                        float inputs:in3.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Separate4.outputs:outb>
+                        color3f outputs:out
+                        float2 ui:nodegraph:node:pos = (-464.76953, 64.21094)
+                        int ui:nodegraph:node:stackingOrder = 26
+                    }
+
+                    def Shader "Add"
+                    {
+                        uniform token info:id = "ND_add_color4"
+                        color4f inputs:in1.connect = </Root/Sticker/Sticker1/Sticker1_2/DefaultMaterial/Image.outputs:out>
+                        color4f inputs:in2 = (1, 0, 0, 0) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-827.6992, 113.80078)
+                        int ui:nodegraph:node:stackingOrder = 42
+                    }
+                }
+            }
+        }
+
+        def Xform "Sticker2" (
+            active = true
+        )
+        {
+            quatf xformOp:orient = (0.9382066, 0, 0, -0.3460756)
+            float3 xformOp:scale = (1, 1, 1)
+            float3 xformOp:translate = (0.054631468, 0.17209417, -0.15884548)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "Sticker2_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, -0.70677)
+                }
+            )
+            {
+                reorder nameChildren = ["DefaultMaterial", "HierarchicalFade", "Sticker2"]
+                rel material:binding = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial>
+                double size = 1
+                float2 ui:nodegraph:node:pos = (-543.125, 84)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 9.457639e-9)
+                float3 xformOp:scale = (0.10000002, 0.20500001, 0.0010000002)
+                float3 xformOp:translate = (0.0000011324883, 0.15141743, 0)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/UnlitSurface.outputs:out>
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = None
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader" (
+                        active = false
+                    )
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+
+                    def Shader "UnlitSurface"
+                    {
+                        uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                        bool inputs:applyPostProcessToneMap
+                        color3f inputs:color.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Combine3.outputs:out>
+                        bool inputs:hasPremultipliedAlpha
+                        float inputs:opacity.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Separate4.outputs:outa>
+                        float inputs:opacityThreshold = 0.5
+                        token outputs:out
+                        float2 ui:nodegraph:node:pos = (-249.6211, 130.28906)
+                        int ui:nodegraph:node:stackingOrder = 27
+                    }
+
+                    def Shader "Image"
+                    {
+                        uniform token info:id = "ND_image_color4"
+                        asset inputs:file = @textures/Emoticon_ExclamationMark.png@
+                        string inputs:filtertype
+                        string inputs:vaddressmode
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-949.0742, -147.64453)
+                        int ui:nodegraph:node:stackingOrder = 43
+                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+                    }
+
+                    def Shader "Separate4"
+                    {
+                        uniform token info:id = "ND_separate4_color4"
+                        color4f inputs:in.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Add.outputs:out>
+                        float outputs:outa
+                        float outputs:outb
+                        float outputs:outg
+                        float outputs:outr
+                        float2 ui:nodegraph:node:pos = (-648.59375, 113.80469)
+                        int ui:nodegraph:node:stackingOrder = 24
+                    }
+
+                    def Shader "Combine3"
+                    {
+                        uniform token info:id = "ND_combine3_color3"
+                        float inputs:in1.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Separate4.outputs:outr>
+                        float inputs:in2.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Separate4.outputs:outg>
+                        float inputs:in3.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Separate4.outputs:outb>
+                        color3f outputs:out
+                        float2 ui:nodegraph:node:pos = (-464.76953, 64.21094)
+                        int ui:nodegraph:node:stackingOrder = 26
+                    }
+
+                    def Shader "Add"
+                    {
+                        uniform token info:id = "ND_add_color4"
+                        color4f inputs:in1.connect = </Root/Sticker/Sticker2/Sticker2_1/DefaultMaterial/Image.outputs:out>
+                        color4f inputs:in2 = (1, 0, 0, 0) (
+                            colorSpace = "lin_srgb"
+                        )
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-827.6992, 113.80078)
+                        int ui:nodegraph:node:stackingOrder = 44
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+
+        def Xform "Sticker3" (
+            active = true
+        )
+        {
+            reorder nameChildren = ["Sticker3_1", "HierarchicalFade"]
+            float2 ui:nodegraph:node:pos = (-478.7871, -61.552734)
+            int ui:nodegraph:node:stackingOrder = 1
+            quatf xformOp:orient = (1, 0, 0, 0)
+            float3 xformOp:scale = (0.9999999, 0.9999999, 1)
+            float3 xformOp:translate = (-0.20514566, -0.08316082, 0.02127096)
+            uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+            def Cube "Sticker3_1" (
+                active = true
+                prepend apiSchemas = ["MaterialBindingAPI"]
+                customData = {
+                    float3 rotationEulerHint = (0, 0, -0.70677)
+                }
+            )
+            {
+                reorder nameChildren = ["DefaultMaterial", "HierarchicalFade", "Sticker2"]
+                rel material:binding = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial>
+                double size = 1.25
+                float2 ui:nodegraph:node:pos = (-543.125, 84)
+                int ui:nodegraph:node:stackingOrder = 1
+                quatf xformOp:orient = (1, 0, 0, 9.457639e-9)
+                float3 xformOp:scale = (0.10000002, 0.1, 0.0010000002)
+                float3 xformOp:translate = (0.11294052, 0.03608775, 0.38373995)
+                uniform token[] xformOpOrder = ["xformOp:translate", "xformOp:orient", "xformOp:scale"]
+
+                def Material "DefaultMaterial"
+                {
+                    token outputs:mtlx:surface.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/UnlitSurface.outputs:out>
+                    token outputs:realitykit:vertex
+                    token outputs:surface.connect = None
+                    float2 ui:nodegraph:realitykit:subgraphOutputs:pos = (0, 110.5)
+
+                    def Shader "DefaultSurfaceShader" (
+                        active = false
+                    )
+                    {
+                        uniform token info:id = "UsdPreviewSurface"
+                        color3f inputs:diffuseColor = (1, 1, 1)
+                        float inputs:roughness = 0.75
+                        token outputs:surface
+                    }
+
+                    def Shader "UnlitSurface"
+                    {
+                        uniform token info:id = "ND_realitykit_unlit_surfaceshader"
+                        bool inputs:applyPostProcessToneMap
+                        color3f inputs:color.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Combine3.outputs:out>
+                        bool inputs:hasPremultipliedAlpha
+                        float inputs:opacity.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Separate4.outputs:outa>
+                        float inputs:opacityThreshold = 0.5
+                        token outputs:out
+                        float2 ui:nodegraph:node:pos = (-249.6211, 130.28906)
+                        int ui:nodegraph:node:stackingOrder = 27
+                    }
+
+                    def Shader "Image"
+                    {
+                        uniform token info:id = "ND_image_color4"
+                        asset inputs:file = @textures/FX_TEX_CH0079_Img_02.png@
+                        string inputs:filtertype
+                        string inputs:vaddressmode
+                        color4f outputs:out
+                        float2 ui:nodegraph:node:pos = (-920.4706, -63.43905)
+                        int ui:nodegraph:node:stackingOrder = 46
+                        string[] ui:nodegraph:realitykit:node:attributesShowingChildren = ["outputs:out"]
+                    }
+
+                    def Shader "Separate4"
+                    {
+                        uniform token info:id = "ND_separate4_color4"
+                        color4f inputs:in.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Image.outputs:out>
+                        float outputs:outa
+                        float outputs:outb
+                        float outputs:outg
+                        float outputs:outr
+                        float2 ui:nodegraph:node:pos = (-648.59375, 113.80469)
+                        int ui:nodegraph:node:stackingOrder = 24
+                    }
+
+                    def Shader "Combine3"
+                    {
+                        uniform token info:id = "ND_combine3_color3"
+                        float inputs:in1.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Separate4.outputs:outr>
+                        float inputs:in2.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Separate4.outputs:outg>
+                        float inputs:in3.connect = </Root/Sticker/Sticker3/Sticker3_1/DefaultMaterial/Separate4.outputs:outb>
+                        color3f outputs:out
+                        float2 ui:nodegraph:node:pos = (-464.76953, 64.21094)
+                        int ui:nodegraph:node:stackingOrder = 26
+                    }
+                }
+            }
+
+            def RealityKitComponent "HierarchicalFade"
+            {
+                uniform token info:id = "RealityKit.HierarchicalFade"
+            }
+        }
+    }
+
+    def RealityKitTimeline "Timeline2"
+    {
+        def RealityKitTrack "Track"
+        {
+            def RealityKitAction "Play_Timeline"
+            {
+                string actionKind = "timeline"
+                int blendLayer = 500
+                double duration = 15.700000319629908
+                uniform token info:id = "9AEC4762-24DB-4B50-8FCA-FA562D77A987"
+                double loopCount = 0
+                double startTime = 0
+                rel timeline = </Root/Timeline>
+            }
+        }
+    }
+}
+

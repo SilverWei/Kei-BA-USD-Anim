@@ -1,0 +1,150 @@
+{
+  "75EC9D23-5D2B-4F97-8636-C3784692C0F7" : {
+    "objectMetadataList" : [
+      [
+        "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+        "Root",
+        "Mika",
+        "_materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+        "Root",
+        "Mika",
+        "_materials",
+        "CH0294_Face"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+        "Root",
+        "Mika"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+        "Root",
+        "Mika",
+        "_materials",
+        "CH0294_Face",
+        "CelSurface"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "A3E3384F-101D-4ECC-8716-D25694A679C5" : {
+    "objectMetadataList" : [
+      [
+        "A3E3384F-101D-4ECC-8716-D25694A679C5",
+        "Mesh",
+        "_materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A3E3384F-101D-4ECC-8716-D25694A679C5",
+        "Mesh",
+        "_materials",
+        "CH0335_Face"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A3E3384F-101D-4ECC-8716-D25694A679C5",
+        "Mesh"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "A3E3384F-101D-4ECC-8716-D25694A679C5",
+        "Mesh",
+        "_materials",
+        "CH0335_Body2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  },
+  "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA" : {
+    "objectMetadataList" : [
+      [
+        "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+        "Root",
+        "Mesh",
+        "_materials",
+        "CH0335_Face"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+        "Root",
+        "Mesh"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+        "Root"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+        "Root",
+        "Mesh",
+        "_materials",
+        "CH0335_Mouth2"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      },
+      [
+        "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+        "Root",
+        "Mesh",
+        "_materials"
+      ],
+      {
+        "isExpanded" : true,
+        "isLocked" : false
+      }
+    ]
+  }
+}

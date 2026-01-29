@@ -1,0 +1,17 @@
+{
+  "pathsToIds" : {
+    "\/Kei\/Sources\/Kei\/Kei.rkassets\/Scene.usda" : "D4F2A7B4-1C14-474E-AAB3-D893223B2E56",
+    "RealityComposerPro\/Sources\/Kei\/Kei.rkassets\/Kei.usda" : "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA",
+    "RealityComposerPro\/Sources\/Kei\/Kei.rkassets\/Kei_Materials.usda" : "A3E3384F-101D-4ECC-8716-D25694A679C5",
+    "RealityComposerPro\/Sources\/Kei\/Kei.rkassets\/New Folder\/Mika.usda" : "75EC9D23-5D2B-4F97-8636-C3784692C0F7",
+    "RealityComposerPro\/Sources\/Kei\/Kei.rkassets\/Scene.usda" : "00F7AB37-E419-44E4-BE8F-29EBDD7D8E5A"
+  },
+  "projectID" : 89418576284028472,
+  "uuidToIntID" : {
+    "00F7AB37-E419-44E4-BE8F-29EBDD7D8E5A" : -8434306757605300708,
+    "75EC9D23-5D2B-4F97-8636-C3784692C0F7" : 4122494954644746621,
+    "A3E3384F-101D-4ECC-8716-D25694A679C5" : 2956259477962857558,
+    "B78F3A5B-1D0D-4710-9332-FA17BC20EBFA" : -6414692448999987940,
+    "D4F2A7B4-1C14-474E-AAB3-D893223B2E56" : 8041390281967507089
+  }
+}
