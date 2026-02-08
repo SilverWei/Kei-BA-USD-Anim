@@ -9,7 +9,7 @@ Certain features of the USDZ model utilize iOS 26+/iPadOS 26+/visionOS 26+ (or h
 *(Model preview screenshot - in macOS Preview)*
 
 ### Copyright & Disclaimer
-- Model copyright belongs to **NEXON Games & Yostar**.
-- Do not use for commercial purposes (including any form of monetization, distribution, sales, etc.).
-- When using this model, please comply with the official Blue Archive fan creation guidelines.
-- This repository is a personal fan secondary creation project, unofficial. All risks are borne by the user; intended only for learning, appreciation, and testing.
+- Model copyright belongs to **NEXON Games & Yostar**.  
+- Do not use for commercial purposes (including any form of monetization, distribution, sales, etc.).  
+- When using this model, please strictly comply with the official Blue Archive fan creation guidelines: [二次創作・ゲーム実況配信及び動画投稿に関するガイドライン](https://bluearchive.jp/news/newsJump/116) (Japanese).  
+- This repository is a fan secondary creation project, unofficial. All risks arising from the use of this project are borne solely by the user; it is intended only for learning, appreciation, and testing purposes.
